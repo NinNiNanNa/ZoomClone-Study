@@ -252,12 +252,11 @@ app.listen(3000, handleListen);
 ### 6. FrontEnd 자바스크립트 수정시 nodemon 새로고침 막기
 
 - `nodemon.json`에 ignore 추가
+- src/public 폴더 와 그안에 있는 모든것들을 무시
 
 ```json
 {
-  // src/public 폴더 와 그안에 있는 모든것들을 무시
-  "ignore": ["src/public/*"],
-  "exec": "babel-node src/server.js"
+  "ignore": ["src/public/*"]
 }
 ```
 
