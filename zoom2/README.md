@@ -19,3 +19,16 @@
 ### WebSocket이 왜 필요한가?
 
 HTTP 만으로 페이스북 메세지를 구현한다면 주기적으로 서버에 request를 보내서 메세지가 왔는지 체크해야 된다.
+
+# node.js로 WebSocket서버 만들기
+
+ws라는 package 사용  
+ws는 사용이 간편하고 매우 빠르며 철저하게 테스트된 WebSocket 클라이언트 및 서버 구현입니다.
+
+protocol은 어떤 사람들이 어딘가에 있는 방에서 만나고 어떻게 일들이 진행될지를 결정한다.  
+어떻게 모든 것들이 돌아가야 할지에 대한 규칙을 만든다.
+
+[참고문서] <https://www.npmjs.com/package/ws>  
+[참고문서] <https://developer.mozilla.org/ko/docs/Web/API/WebSocket>
+
+#1.0 ~ #1.5까지 정리해야됨
