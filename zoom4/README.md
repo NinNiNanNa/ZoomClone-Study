@@ -55,4 +55,5 @@ httpServer.listen(3000, handleListen);
 
 - socket.io를 설치하면 URL(`/socket.io/socket.io.js`)을 제공해준다.  
   이유는 socket.io가 WebSocket의 부가기능이 아니기 때문이다.
-  <img src="src/1.png" width="500"/>
+
+<img src="src/1.png" width="500"/>
