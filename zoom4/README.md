@@ -129,9 +129,6 @@
 
 # SocketIO is Amazing
 
-유저가 채팅 참가시 방을 먼저 개설
-socket.io를 이용하면 방에 입장, 퇴장하는 것이 매우 간단하다.
-
 ### 화면에 채팅방 개설할 폼 생성
 
 - src > views > home.pug에 form 생성하기
