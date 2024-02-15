@@ -33,7 +33,7 @@ wsServer.on("connection", (socket) => {
     socket.to(roomName).emit("welcome", socket.nickname);
   });
 
-  // 연결이 끊어질때(완전히 끊어지기 전) "bye" event 전송
+  // 연결이 끊어지기 직전에 "bye" event 전송
   socket.on("disconnecting", () => {
     socket.rooms.forEach((room) =>
       socket.to(room).emit("bye", socket.nickname)
