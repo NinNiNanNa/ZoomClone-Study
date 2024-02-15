@@ -78,7 +78,9 @@
     script(src="/public/js/app.js")
   ```
 
-# 서버(back-end)에 SocketIO 연결
+# SocketIO 연결
+
+### back-end
 
 - src > server.js에 socket.io 연결 (앞서 WebSocket(wws) 과 방식은 비슷하다.)
 
@@ -107,7 +109,7 @@
   httpServer.listen(3000, handleListen);
   ```
 
-# front-end에 SocketIO 연결
+### front-end
 
 - src > views > home.pug에 socket.io를 설치하면 화면 콘솔창에서 io라는 함수를 볼 수 있다.
 - `io`는 자동적으로 back-end socket.io와 연결해주는 함수이다.
@@ -124,3 +126,134 @@
 ### fron-end에 socket.io를 연결하면 back-end에서 찍은 로그가 콘솔창에 출력된다.
 
 <img src="src/3.png" width="500"/>
+
+# SocketIO is Amazing
+
+유저가 채팅 참가시 방을 먼저 개설
+socket.io를 이용하면 방에 입장, 퇴장하는 것이 매우 간단하다.
+
+### 화면에 채팅방 개설할 폼 생성
+
+- src > views > home.pug에 form 생성하기
+
+  ```javascript
+  doctype html
+  html(lang="en")
+    head
+      meta(charset="UTF-8")
+      meta(name="viewport", content="width=device-width, initial-scale=1.0")
+      title Noom
+      link(rel="stylesheet", href="https://unpkg.com/mvp.css")
+    body
+      header
+        h1 Noom
+      main
+        div#welcome
+          form
+            input(placeholder="room name", required, type="text")
+            button Enter Room
+      //- socket.io 설치
+      script(src="/socket.io/socket.io.js")
+      script(src="/public/js/app.js")
+  ```
+
+### 작성한 폼을 서버로 전송하는 event 설정
+
+- src > public > js > app.js에 화면에 만든 `div#welcome`과 `form` 가져오기
+- form submit 이벤트 설정
+- room이라는 event를 emit  
+  (event 이름은 어떤 이름이든 상관없다. - WebSocket에서는 "message"라는 특정 이벤트 사용)
+- emit을 하면 object argument를 보낼 수 있다.  
+   (Websocket을 사용할땐 object를 string으로 변환시켜 전송했지만 socket.io는 object를 전송할 수 있다.)
+
+  ```javascript
+  const socket = io();
+
+  const welcome = document.getElementById("welcome");
+  const form = welcome.querySelector("form");
+
+  function handleRoomSubmit(event) {
+    event.preventDefault();
+    const input = form.querySelector("input");
+    socket.emit("enter_room", { payload: input.value });
+    input.value = "";
+  }
+
+  form.addEventListener("submit", handleRoomSubmit);
+  ```
+
+### 서버에서 front-end가 전송한 event 받기
+
+- front-end 에서 보낸 메세지를 서버(back-end)에서 받기 위해  
+   front-end에서 전송한 event(`room`)를 src > server.js에서 받기
+
+  ```javascript
+  import http from "http";
+  import SocketIO from "socket.io";
+  import express from "express";
+
+  const app = express();
+
+  app.set("view engine", "pug");
+  app.set("views", __dirname + "/views");
+  app.use("/public", express.static(__dirname + "/public"));
+  app.get("/", (_, res) => res.render("home"));
+  app.get("/*", (_, res) => res.redirect("/"));
+
+  const httpServer = http.createServer(app);
+  const wsServer = SocketIO(httpServer);
+
+  // socket.io 연결
+  wsServer.on("connection", (socket) => {
+    socket.on("enter_room", (msg) => {
+      console.log(msg);
+    });
+  });
+
+  const handleListen = () => console.log(`Listening on http://localhost:3000`);
+  httpServer.listen(3000, handleListen);
+  ```
+
+### 결과
+
+<img src="src/4.png" width="500"/>
+
+### `socket.emit` 은 3가지의 argument를 사용
+
+1. event
+2. 보내고 싶은 payload (object, number, string 상관없음 / 한가지뿐 아니라 여러개도 가능)
+3. 서버에서 호출하는 function (마지막에 넣어야함)
+
+```javascript
+// app.js
+function backendDone(msg) {
+  console.log(`The backend says: `, msg);
+}
+
+socket.emit(
+  "enter_room",
+  { payload: input.value },
+  5,
+  "hello",
+  43443,
+  true,
+  false,
+  backendDone
+);
+```
+
+```javascript
+// server.js
+socket.on("enter_room", (a, b, c, d, e, f, done) => {
+  console.log(a, b, c, d, e, f);
+  setTimeout(() => {
+    done("hello from the backend");
+  }, 10000);
+});
+```
+
+<img src="src/6.png" width="500"/>
+
+#### 10초 뒤에 화면 콘솔창에 출력
+
+<img src="src/5.png" width="500"/>
