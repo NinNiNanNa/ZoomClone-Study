@@ -16,7 +16,22 @@ const wsServer = SocketIO(httpServer);
 
 // socket.io 연결
 wsServer.on("connection", (socket) => {
-  console.log(socket);
+  // console.log(socket);
+  socket.on("enter_room", (roomName, done) => {
+    console.log(roomName);
+    setTimeout(() => {
+      /*
+      done함수를 실행하면 back-end에서 
+      function backendDone() {
+        console.log("backend done");
+      }
+      이 코드를 실행시키지 않는다.
+      즉 back-end에서 front-end의 코드를 실행시키지 않는다.
+      이유는 보안 문제가 생길 수 있기때문이다.
+      */
+      done("hello from the backend");
+    }, 10000);
+  });
 });
 
 // WebSocket을 이용한 코드
