@@ -165,7 +165,7 @@ cameraBtn.addEventListener("click", handleCameraClick);
 ```javascript
 // 음소거 버튼의 텍스트와 상태
 function handleMuteClick() {
-  // console.log(myStream.getAudioTracks());
+  console.log(myStream.getAudioTracks());
   // 소리 on/off 기능
   myStream
     .getAudioTracks()
@@ -181,7 +181,7 @@ function handleMuteClick() {
 
 // 카메라 버튼의 텍스트와 상태
 function handleCameraClick() {
-  // console.log(myStream.getVideoTracks());
+  console.log(myStream.getVideoTracks());
   // 카메라 on/off 기능
   myStream
     .getVideoTracks()
@@ -195,3 +195,7 @@ function handleCameraClick() {
   }
 }
 ```
+
+### "Mute 버튼", "Camera Off 버튼" 클릭시 음소거, 카메라 꺼짐
+
+<img src="src/5.png" width="500"/>
