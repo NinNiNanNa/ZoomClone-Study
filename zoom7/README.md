@@ -64,8 +64,12 @@ async function getMedia() {
 getMedia();
 ```
 
-<img src="src/1.png" width="500"/>
-<img src="src/2.png" width="500"/>
+### 미디어 장치 사용권한과 정보 콘솔에 출력
+
+<p align="center">
+  <img src="src/1.png" width="49%"/>
+  <img src="src/2.png" width="49%"/>
+</p>
 
 ## 마이크, 카메라 제어 버튼
 
@@ -151,9 +155,11 @@ cameraBtn.addEventListener("click", handleCameraClick);
 > `getAudioTracks()` : 오디오 정보 가져오기  
 > `getVideoTracks()` : 비디오 정보 가져오기
 
+### "Mute 버튼", "Camera Off 버튼" 클릭시 해당 정보 콘솔에 출력
+
 <p align="center">
-  <img src="src/3.png" width="50%"/>
-  <img src="src/4.png" width="50%"/>
+  <img src="src/3.png" width="49%"/>
+  <img src="src/4.png" width="49%"/>
 </p>
 
 ```javascript
