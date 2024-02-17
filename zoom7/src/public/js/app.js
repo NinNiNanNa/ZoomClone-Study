@@ -25,8 +25,8 @@ async function getCameras() {
       const option = document.createElement("option");
       option.value = camera.deviceId;
       option.innerText = camera.label;
-      // 사용하고 있는 카메라와 선택한 카메라의 label이 같다면 선택된걸로 출력
-      if (currentCamera.label == camera.label) {
+      // 사용하고 있는 카메라와 선택된 카메라의 label이 같다면 선택된걸로 출력
+      if (currentCamera.label === camera.label) {
         option.selected = true;
       }
       camerasSelect.appendChild(option);
