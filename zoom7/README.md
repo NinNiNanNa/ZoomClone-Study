@@ -206,7 +206,7 @@ function handleCameraClick() {
 
 ### "Mute 버튼", "Camera Off 버튼" 클릭시 음소거, 카메라 꺼짐
 
-<img src="src/5.png" width="500"/>
+<img src="src/5.gif" width="500"/>
 
 ## 카메라 장치 변경
 
