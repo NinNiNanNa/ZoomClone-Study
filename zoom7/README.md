@@ -147,3 +147,45 @@ cameraBtn.addEventListener("click", handleCameraClick);
 ```
 
 ### 2. 오디오, 비디오 정보 가져오기
+
+> `getAudioTracks()` : 오디오 정보 가져오기  
+> `getVideoTracks()` : 비디오 정보 가져오기
+
+<p align="center">
+  <img src="src/3.png" width="50%"/>
+  <img src="src/4.png" width="50%"/>
+</p>
+
+```javascript
+// 음소거 버튼의 텍스트와 상태
+function handleMuteClick() {
+  // console.log(myStream.getAudioTracks());
+  // 소리 on/off 기능
+  myStream
+    .getAudioTracks()
+    .forEach((track) => (track.enabled = !track.enabled));
+  if (!muted) {
+    muteBtn.innerText = "Unmute";
+    muted = true;
+  } else {
+    muteBtn.innerText = "Mute";
+    muted = false;
+  }
+}
+
+// 카메라 버튼의 텍스트와 상태
+function handleCameraClick() {
+  // console.log(myStream.getVideoTracks());
+  // 카메라 on/off 기능
+  myStream
+    .getVideoTracks()
+    .forEach((track) => (track.enabled = !track.enabled));
+  if (!cameraOff) {
+    cameraBtn.innerText = "Camera On";
+    cameraOff = true;
+  } else {
+    cameraBtn.innerText = "Camera Off";
+    cameraOff = false;
+  }
+}
+```
