@@ -5,7 +5,7 @@
 > 실시간 커뮤니케이션을 가능하게 해주는 기술  
 > [ 공식문서 - WebRTC API ](https://developer.mozilla.org/ko/docs/Web/API/WebRTC_API)
 >
-> <img src="/src/1.png" width="500"/>
+> <img src="./src/1.png" width="500"/>
 >
 > ### 1. Peer to Peer 형식으로 실시간 통신이 이루어진다.
 >
@@ -114,7 +114,7 @@ const handleListen = () => console.log(`Listening on http://localhost:3000`);
 httpServer.listen(3000, handleListen);
 ```
 
-<img src="/src/2.gif" width="500"/>
+<img src="./src/2.gif" width="500"/>
 
 - src > public > js > app.js 에 방에 참가했을때 나중에 쓸 수 있도록 방 이름을 변수에 저장  
   이유 - 현재 있는 방의 이름을 알아야 하기 때문에 방 이름을 변수에 저장한다.
@@ -175,7 +175,7 @@ socket.on("welcome", () => {
 
 ### 2. 양쪽 브라우저에 RTC연결 생성, addStream() 생성
 
-<img src="/src/3.png" width="500"/>
+<img src="./src/3.png" width="500"/>
 
 - 양쪽 브라우저에서 연결통로를 생성하기위해 src > public > js > app.js 에
   양쪽 브라우저에서 돌아가는 코드 `startMedia( )` 에 `makeConnection()`기입
@@ -232,7 +232,7 @@ socket.on("welcome", async () => {
 });
 ```
 
-<img src="/src/4.png" width="500"/>
+<img src="./src/4.png" width="500"/>
 
 - 클라이언트에서 보낸 `offer` 데이터를 방에 있는 모든 클라이언트에 `offer` 데이터를 전송
 
@@ -261,7 +261,7 @@ socket.on("offer", (offer) => {
 });
 ```
 
-<img src="/src/5.png" width="500"/>
+<img src="./src/5.png" width="500"/>
 
 ### 4. Answers
 
@@ -280,7 +280,7 @@ socket.on("offer", (offer) => {
 
 - 여기서 오류 발생
 
-  <img src="/src/6.png" width="500"/>
+  <img src="./src/6.png" width="500"/>
 
   이유 ❓  
    너무 빠르게 일어난 일이라 Peer B 브라우저에서 발현되지 않아 myPeerConnection이 아직 존재하지 않기때문이다.  
@@ -342,7 +342,7 @@ socket.on("offer", async (offer) => {
 });
 ```
 
-<img src="/src/7.png" width="500"/>
+<img src="./src/7.png" width="500"/>
 
 - 클라이언트에서 보낸 `answer` 데이터를 방에 있는 모든 클라이언트에 `answer` 데이터를 전송
 
@@ -424,7 +424,7 @@ function handleIce(data) {
 }
 ```
 
-<img src="/src/8.png" width="500"/>
+<img src="./src/8.png" width="500"/>
 
 - 두 브라우저가 candidate들을 서로 주고 받기
 
@@ -477,7 +477,7 @@ wsServer.on("connection", (socket) => {
 });
 ```
 
-<img src="/src/9.png" width="500"/>
+<img src="./src/9.png" width="500"/>
 
 - addstream event 등록
 
@@ -490,7 +490,6 @@ function makeConnection() {
     .getTracks()
     .forEach((track) => myPeerConnection.addTrack(track, myStream));
 }
-
 ...
 
 function handleAddStream(data) {
@@ -499,7 +498,7 @@ function handleAddStream(data) {
 }
 ```
 
-<img src="/src/10.png" width="500"/>
+<img src="./src/10.png" width="500"/>
 
 - 화면에 다른 비디오를 생성하고 위에서 받은 Stream으로 비디오 세팅
 
@@ -543,7 +542,7 @@ function handleAddStream(data) {
 ```
 
 <p align="center">
-  <img src="/src/11.gif" width="800"/>
+  <img src="./src/11.gif" width="800"/>
 </p>
 
 # Senders
@@ -586,7 +585,7 @@ async function handleCameraChange() {
 ```
 
 <p align="center">
-  <img src="/src/12.gif" width="800"/>
+  <img src="./src/12.gif" width="800"/>
 </p>
 
 ---
@@ -609,7 +608,7 @@ async function handleCameraChange() {
 > &nbsp;
 
 <p align="center">
-  <img src="/src/13.gif" width="800"/>
+  <img src="./src/13.gif" width="800"/>
 </p>
 
 # STUN
@@ -666,7 +665,7 @@ function makeConnection() {
 
 ### 너무 많은 Peer을 가지고 있을때 굉장히 느려진다.
 
-<img src="/src/14.png" width="300"/>
+<img src="./src/14.png" width="300"/>
 
 Peer이 많아지기 시작하면 실시간 소통이 굉장히 느려지기 시작할 것이다.  
 만약 5개의 peer 브라우저가 있다고 했을 때, A브라우저가 비디오 정보를 보낸다면, B, C, D, E 브라우저에 각각 보내야 하기 때문이다.  
