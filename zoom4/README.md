@@ -10,17 +10,18 @@
 프로토콜? 서로 다른 컴퓨터끼리 소통하기 위한 약속  
 ※ WebSocket과 socket.io는 자바스크립트와 jQuery의 관계와 비슷한 것 같다.
 
-### WebSocket
-
-- HTML5 웹 표준 기술
-- 매우 빠르게 작동하며 통신할때 아주 적은 데이터를 이용
-- 이벤트를 단순히 듣고, 보내는 것만 가능
-
-### socket.io
-
-- 표준 기술이 아니며, 라이브러리
-- 소켓 연결 실패 시 fallback을 통해 다른 방식으로 알아서 해당 클라이언트와 연결을 시도
-- 방 개념을 이용해 일부 클라이언트에게만 데이터를 전송하는 브로드캐스팅(Broadcasting)이 가능
+> ### WebSocket
+>
+> - HTML5 웹 표준 기술
+> - 매우 빠르게 작동하며 통신할때 아주 적은 데이터를 이용
+> - 이벤트를 단순히 듣고, 보내는 것만 가능
+>
+> ### socket.io
+>
+> - 표준 기술이 아니며, 라이브러리
+> - 소켓 연결 실패 시 fallback을 통해 다른 방식으로 알아서 해당 클라이언트와 연결을 시도
+> - 방 개념을 이용해 일부 클라이언트에게만 데이터를 전송하는 브로드캐스팅(Broadcasting)이 가능  
+>   &nbsp;
 
 ### 어떤걸 써야할까?
 
@@ -30,7 +31,7 @@
 
 # SocketIO 설치
 
-> npm i socket.io
+#### `npm i socket.io`
 
 - src > server.js에 socket.io import한 후 io서버 생성
 
@@ -80,7 +81,7 @@
 
 # SocketIO 연결
 
-### back-end
+### 서버(back-end)
 
 - src > server.js에 socket.io 연결 (앞서 WebSocket(wws) 과 방식은 비슷하다.)
 
@@ -109,7 +110,7 @@
   httpServer.listen(3000, handleListen);
   ```
 
-### front-end
+### 클라이언트(front-end)
 
 - src > views > home.pug에 socket.io를 설치하면 화면 콘솔창에서 io라는 함수를 볼 수 있다.
 - `io`는 자동적으로 back-end socket.io와 연결해주는 함수이다.
@@ -123,7 +124,7 @@
   const socket = io();
   ```
 
-### fron-end에 socket.io를 연결하면 back-end에서 찍은 로그가 콘솔창에 출력된다.
+### 클라이언트에 socket.io를 연결하면 서버에서 찍은 로그가 콘솔창에 출력된다.
 
 <img src="src/3.png" width="500"/>
 
