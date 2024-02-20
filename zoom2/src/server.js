@@ -25,6 +25,7 @@ function handleConnection(socket) {
 wss.on("connection", handleConnection);
 */
 wss.on("connection", (socket) => {
+  // console.log(socket);
   console.log("Connected to Browser ✅");
 
   // 브라우저 창을 닫으면 발생
