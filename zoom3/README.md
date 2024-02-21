@@ -206,7 +206,7 @@ nickForm.addEventListener("submit", (event) => {
 서버에 전송하는 폼을 단순 String 형식이 아니라 JSON객체 형식으로 변경한 후,  
 `type` 속성을 객체에 담아서 각 메세지의 타입을 구분한다.
 
-```json
+```javascript
 // JSON
 {
 	type: 'new_message',
