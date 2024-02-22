@@ -214,7 +214,11 @@
 
 ### 결과
 
-<img src="src/4.png" width="500"/>
+<p align="center">
+  <img src="src/4.png" width="500"/>
+</p>
+
+---
 
 ### `socket.emit` 은 3가지의 argument를 사용
 
